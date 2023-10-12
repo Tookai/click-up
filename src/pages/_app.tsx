@@ -14,7 +14,6 @@ const fonts = {
 	heading: inter.style.fontFamily,
 }
 
-// 3. extend the theme
 const theme = extendTheme({ config, fonts })
 
 export default function App({ Component, pageProps }: AppProps) {

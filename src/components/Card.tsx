@@ -25,10 +25,7 @@ const Card: FunctionComponent<IProps> = ({ item, index }) => {
 					{...provided.dragHandleProps}
 				>
 					<Text fontSize={"sm"} noOfLines={2} h={"42px"}>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi sed
-						culpa porro non! Atque maxime ducimus unde, ratione assumenda quae
-						ipsam nihil! Suscipit repellendus saepe repellat quod, maxime
-						officiis soluta?
+						{item.name}
 					</Text>
 					<Divider />
 					<Text fontSize={"2xs"} noOfLines={4} h={"72px"}>

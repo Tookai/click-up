@@ -19,9 +19,7 @@ const Column: FunctionComponent<IProps> = ({ droppableId, title, cards }) => {
 					flex={1}
 					borderWidth={1}
 					rounded={"lg"}
-					p={3}
-					overflowX={"hidden"}
-					overflowY={"auto"}
+					overflow={"hidden"}
 					ref={provided.innerRef}
 					{...provided.droppableProps}
 				>
@@ -29,17 +27,26 @@ const Column: FunctionComponent<IProps> = ({ droppableId, title, cards }) => {
 						size={"md"}
 						w={"full"}
 						textAlign={"center"}
-						pb={2}
+						py={2}
 						borderBottomWidth={4}
 					>
 						{title}
 					</Heading>
 
-					{cards.map((card, index) => (
-						<Card key={`${droppableId}-${index}`} item={card} index={index} />
-					))}
+					<VStack flex={1} w={"full"} h={"full"} overflowY={"auto"} p={3}>
+						{cards.map((card, index) => (
+							<Card
+								key={card.id}
+								item={{
+									...card,
+									position: index,
+								}}
+								index={index}
+							/>
+						))}
 
-					{provided.placeholder}
+						{provided.placeholder}
+					</VStack>
 				</VStack>
 			)}
 		</Droppable>

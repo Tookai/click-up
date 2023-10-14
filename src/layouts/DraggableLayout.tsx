@@ -1,4 +1,5 @@
 import useTanState from "@/hooks/use-tan-state"
+import axios from "axios"
 import { useRouter } from "next/router"
 import { FunctionComponent, PropsWithChildren } from "react"
 import { DragDropContext, DropResult } from "react-beautiful-dnd"
@@ -33,6 +34,10 @@ const DraggableLayout: FunctionComponent<PropsWithChildren> = ({
 		const { ticket, rest } = getTicket(draggableId, data)
 
 		setData([{ ...ticket, stateId: destination.droppableId }, ...rest])
+
+		axios.put(`/api/v1/tasks/update/${draggableId}/state`, {
+			stateId: destination.droppableId,
+		})
 	}
 
 	return <DragDropContext onDragEnd={onDragEnd}>{children}</DragDropContext>

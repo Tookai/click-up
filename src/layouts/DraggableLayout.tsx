@@ -1,10 +1,11 @@
 import useTanState from "@/hooks/use-tan-state"
+import { useRouter } from "next/router"
 import { FunctionComponent, PropsWithChildren } from "react"
 import { DragDropContext, DropResult } from "react-beautiful-dnd"
 
 const getTicket = (id: string, arr: any[]) => {
-	const ticket = arr.find((ticket) => ticket.id === id)
-	const rest = arr.filter((ticket) => ticket.id !== id)
+	const ticket = arr?.find((ticket) => ticket.id === id)
+	const rest = arr?.filter((ticket) => ticket.id !== id)
 
 	return { ticket, rest }
 }
@@ -12,7 +13,10 @@ const getTicket = (id: string, arr: any[]) => {
 const DraggableLayout: FunctionComponent<PropsWithChildren> = ({
 	children,
 }) => {
-	const { data, setData } = useTanState(["tickets", "id"])
+	const router = useRouter()
+	const { id } = router.query as { id: string }
+
+	const { data, setData } = useTanState(["tasks", `${id}`])
 
 	const onDragEnd = (result: DropResult) => {
 		const { source, destination, draggableId } = result
@@ -28,7 +32,7 @@ const DraggableLayout: FunctionComponent<PropsWithChildren> = ({
 
 		const { ticket, rest } = getTicket(draggableId, data)
 
-		setData([{ ...ticket, state: destination.droppableId }, ...rest])
+		setData([{ ...ticket, stateId: destination.droppableId }, ...rest])
 	}
 
 	return <DragDropContext onDragEnd={onDragEnd}>{children}</DragDropContext>

@@ -5,12 +5,6 @@ export async function middleware(request: NextRequest) {
 	const origin = request?.nextUrl?.origin
 	const path = request?.nextUrl?.pathname
 
-	if (path === "/") {
-		return NextResponse.redirect(
-			new URL("/project/4187fea8-baa1-4f04-ad4b-89cfe2590ce3", origin)
-		)
-	}
-
 	return NextResponse.next()
 }
 

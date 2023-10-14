@@ -1,9 +1,12 @@
-import { Divider, Flex, Text } from "@chakra-ui/react"
+import { Divider, Flex, Spacer, Text } from "@chakra-ui/react"
+import { Task } from "@prisma/client"
 import { FunctionComponent } from "react"
 import { Draggable } from "react-beautiful-dnd"
+import DeleteTaskModal from "./modals/DeleteTaskModal"
+import EditTaskModal from "./modals/EditTaskModal"
 
 interface IProps {
-	item: any
+	item: Task
 	index: number
 }
 
@@ -13,7 +16,7 @@ const Card: FunctionComponent<IProps> = ({ item, index }) => {
 			{(provided, snap) => (
 				<Flex
 					flexDir={"column"}
-					gap={1}
+					gap={3}
 					w={"full"}
 					p={3}
 					borderWidth={1}
@@ -24,23 +27,25 @@ const Card: FunctionComponent<IProps> = ({ item, index }) => {
 					{...provided.draggableProps}
 					{...provided.dragHandleProps}
 				>
-					<Text fontSize={"sm"} noOfLines={2} h={"42px"}>
+					<Text fontSize={"sm"} noOfLines={2} maxH={"42px"}>
 						{item.name}
 					</Text>
+					{item.content && (
+						<>
+							<Divider />
+							<Text fontSize={"2xs"} noOfLines={4} maxH={"72px"}>
+								{item.content}
+							</Text>
+						</>
+					)}
+
 					<Divider />
-					<Text fontSize={"2xs"} noOfLines={4} h={"72px"}>
-						Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse
-						facere modi qui maxime cumque! Laudantium, assumenda debitis.
-						Repudiandae labore reiciendis sapiente dicta pariatur omnis optio
-						nihil, vel repellendus ducimus! Sunt. Odio adipisci error reiciendis
-						sint, unde maiores nulla, totam dolor ipsam, blanditiis sed eius
-						suscipit labore reprehenderit porro! Alias repellendus animi eius
-						quisquam numquam quo magnam corporis libero placeat repellat?
-						Suscipit, ipsum. Accusamus magnam quaerat nihil deserunt vel
-						corporis! Quidem veritatis molestiae beatae, voluptatibus eaque ad
-						laborum numquam nobis excepturi vitae iste reiciendis suscipit
-						incidunt non eligendi autem, rerum ullam.
-					</Text>
+					<Flex w={"full"} gap={3}>
+						<EditTaskModal item={item} />
+
+						<Spacer />
+						<DeleteTaskModal item={item} />
+					</Flex>
 				</Flex>
 			)}
 		</Draggable>

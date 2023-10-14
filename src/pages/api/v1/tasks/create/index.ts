@@ -13,10 +13,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	}
 
 	try {
-		const tasks = await prisma.task.create({
+		const task = await prisma.task.create({
 			data: req.body.data,
 		})
-		return res.status(200).json(tasks)
+		return res.status(200).json({ message: "Task created successfully", task })
 	} catch (error) {
 		return res.status(500).json({ error: error })
 	}

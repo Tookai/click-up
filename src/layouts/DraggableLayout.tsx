@@ -4,7 +4,7 @@ import { useRouter } from "next/router"
 import { FunctionComponent, PropsWithChildren } from "react"
 import { DragDropContext, DropResult } from "react-beautiful-dnd"
 
-const getTicket = (id: string, arr: any[]) => {
+export const getTicket = (id: string, arr: any[]) => {
 	const ticket = arr?.find((ticket) => ticket.id === id)
 	const rest = arr?.filter((ticket) => ticket.id !== id)
 

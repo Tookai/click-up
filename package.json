@@ -18,7 +18,7 @@
 		"@chakra-ui/react": "^2.8.1",
 		"@emotion/react": "^11.11.1",
 		"@emotion/styled": "^11.11.0",
-		"@prisma/client": "^5.4.2",
+		"@prisma/client": "5.4.2",
 		"@tanstack/react-query": "^4.36.1",
 		"axios": "^1.5.1",
 		"dayjs": "^1.11.10",
@@ -44,7 +44,7 @@
 		"husky": "^8.0.3",
 		"lint-staged": "^14.0.1",
 		"prettier": "^3.0.3",
-		"prisma": "^5.4.2",
+		"prisma": "5.4.2",
 		"typescript": "^5"
 	}
 }
